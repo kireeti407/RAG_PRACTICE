@@ -1,0 +1,43 @@
+{
+  "name": "@org/source",
+  "version": "0.0.0",
+  "license": "MIT",
+    "scripts": {
+    "start": "npm run start:api",
+    "start:api": "tsx --tsconfig apps/api/tsconfig.json apps/api/src/main.ts",
+    "start:web": "npm run start -w @org/web",
+    "start:qdrant": "docker compose -f infrastructure/qdrant/docker-compose.yml up -d",
+    "dev": "npm run dev:api",
+    "dev:api": "tsx watch --tsconfig apps/api/tsconfig.json apps/api/src/main.ts",
+    "dev:web": "npm run dev -w @org/web",
+    "typecheck": "tsc -p apps/api/tsconfig.json --noEmit && tsc -p apps/web/tsconfig.json --noEmit"
+  },
+  "private": true,
+  "dependencies": {
+    "@nestjs/common": "^11.2.1",
+    "@nestjs/core": "^11.2.1",
+    "@nestjs/platform-express": "^11.2.1",
+    "@qdrant/js-client-rest": "^1.19.0",
+    "ollama": "^0.6.3",
+    "pdf-parse": "^2.4.5",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2"
+  },
+  "devDependencies": {
+    "@nx/js": "23.1.1",
+    "@swc-node/register": "1.11.1",
+    "@swc/core": "1.15.8",
+    "@swc/helpers": "0.5.18",
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.2.0",
+    "@types/node": "^24.0.0",
+    "nx": "23.1.1",
+    "prettier": "^3.8.1",
+    "tslib": "^2.3.0",
+    "tsx": "^4.23.12",
+    "typescript": "~6.0.3"
+  },
+  "workspaces": [
+    "apps/*"
+  ]
+}
